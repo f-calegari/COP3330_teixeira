@@ -5,6 +5,33 @@ import static org.junit.jupiter.api.Assertions.*;
 class BodyMassIndexTest {
 
     @Test
+    void testcalculateBmiScore24dot5() {
+        assertEquals(24.5, BodyMassIndex.calculateBmiScore(62, 134));
+    }
+
+    @Test
+    void testcalculateBmiScore3dot5() {
+        assertEquals(3.5, BodyMassIndex.calculateBmiScore(100, 50));
+    }
+
+    @Test
+    void testcalculateBmiCategoryUnderweight() {
+        assertEquals("Underweight", BodyMassIndex.calculateBmiCategory(10));
+    }
+    @Test
+    void testcalculateBmiCategoryNormalweight() {
+        assertEquals("Normal weight", BodyMassIndex.calculateBmiCategory(24));
+    }
+    @Test
+    void testcalculateBmiCategoryOverweight() {
+        assertEquals("Overweight", BodyMassIndex.calculateBmiCategory(28));
+    }
+    @Test
+    void testcalculateBmiCategoryObesity() {
+        assertEquals("Obesity", BodyMassIndex.calculateBmiCategory(40));
+    }
+
+    @Test
     void testBmiScore24dot506() {
         BodyMassIndex b = new BodyMassIndex(62, 134);
         assertEquals(24.5, b.getUserbmi());
