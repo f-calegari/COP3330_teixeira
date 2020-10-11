@@ -4,6 +4,7 @@ public class Triangle extends Shape2D {
     private final double height;
 
     public Triangle(double base, double height) {
+        super();
         this.base = base;
         this.height = height;
     }
@@ -14,6 +15,6 @@ public class Triangle extends Shape2D {
 
     @Override
     public double getArea() {
-        return (base * height) / 2;
+        return (this.base * this.height) / 2;
     }
 }

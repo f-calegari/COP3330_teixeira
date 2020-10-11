@@ -3,6 +3,7 @@ public class Square extends Shape2D {
     private final double side;
 
     public Square(double side) {
+        super();
         this.side = side;
     }
 
@@ -13,6 +14,6 @@ public class Square extends Shape2D {
 
     @Override
     public double getArea() {
-        return side * side;
+        return this.side * this.side;
     }
 }

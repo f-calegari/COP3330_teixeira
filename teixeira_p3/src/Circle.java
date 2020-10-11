@@ -3,6 +3,7 @@ public class Circle extends Shape2D {
     private final double radius;
 
     public Circle(double radius) {
+        super();
         this.radius = radius;
     }
 
@@ -13,6 +14,6 @@ public class Circle extends Shape2D {
 
     @Override
     public double getArea() {
-        return Math.PI * radius * radius;
+        return Math.PI * this.radius * this.radius;
     }
 }

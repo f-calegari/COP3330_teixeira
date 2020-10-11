@@ -3,6 +3,7 @@ public class Cube extends Shape3D {
     private final double edge;
 
     public Cube(double edge) {
+        super();
         this.edge = edge;
     }
 
@@ -13,11 +14,11 @@ public class Cube extends Shape3D {
 
     @Override
     public double getArea() {
-        return 6 * (edge * edge);
+        return 6 * (this.edge * this.edge);
     }
 
     @Override
     public double getVolume() {
-        return (edge * edge * edge);
+        return (this.edge * this.edge * this.edge);
     }
 }
