@@ -3,14 +3,19 @@ import java.util.Scanner;
 
 public class App {
 
-    private static TaskList t_List = new TaskList();
+    private TaskList t_List;
     private static Scanner input = new Scanner(System.in);
 
-    public static void main(String[] args){
-        readInput();
+    public App(){
+        t_List = new TaskList();
     }
 
-    public static void readInput()
+    public static void main(String[] args){
+        App app = new App();
+        app.readInput();
+    }
+
+    private void readInput()
     {
         int opt=0;
         while(opt!=3)
@@ -35,7 +40,7 @@ public class App {
 
         }
 
-    private static void listMenu() {
+    private void listMenu() {
         int opt=0;
         while(opt!=8)
         {
@@ -82,15 +87,15 @@ public class App {
         }
     }
 
-    private static void writeTaskList() {
+    private void writeTaskList() {
         t_List.writeList(getTaskListNameToSave());
     }
 
-    private static void loadTaskList() {
+    private void loadTaskList() {
         t_List.readList(getTaskListNameToLoad());
     }
 
-    private static void markTaskItemCompleted() {
+    private void markTaskItemCompleted() {
             try {
                 int index = getTaskIndextoComplete();
                 t_List.markItemCompleted(index);
@@ -102,7 +107,7 @@ public class App {
 
     }
 
-    private static void unmarkTaskItemCompleted() {
+    private void unmarkTaskItemCompleted() {
             try {
                 int index = getTaskIndextoUncomplete();
                 t_List.markItemUncompleted(index);
@@ -114,10 +119,14 @@ public class App {
 
     }
 
-    private static void removeTaskItem() {
+    private void removeTaskItem() {
          try {
-                int index = getTaskIndextoRemove();
-                t_List.removeItem(index);
+             if(t_List.taskListIsEmpty()) {
+                 System.out.printf("%nTask list is empty, nothing to remove!");
+             }else {
+                 int index = getTaskIndextoRemove();
+                 t_List.removeItem(index);
+             }
             } catch (IndexOutOfBoundsException ex) {
                 System.out.println("Warning: Please select a valid task to remove");
             } catch (InputMismatchException ex){
@@ -126,7 +135,7 @@ public class App {
 
     }
 
-    private static void getEditTaskItem() {
+    private void getEditTaskItem() {
             try {
                 int index = getTaskIndex();
                 input.nextLine();
@@ -144,7 +153,7 @@ public class App {
 
     }
 
-    private static void getTaskItem(){
+    private void getTaskItem(){
 
         while(true) {
             try {
@@ -161,67 +170,67 @@ public class App {
 
     }
 
-    private static String getTaskListNameToSave(){
+    private String getTaskListNameToSave(){
         System.out.printf("Enter the filename to save as: ");
         return input.nextLine();
     }
 
-    private static String getTaskListNameToLoad(){
+    private String getTaskListNameToLoad(){
         System.out.printf("Enter the filename to load: ");
         return input.nextLine();
     }
 
-    private static String getTaskDueDate() {
+    private String getTaskDueDate() {
         System.out.printf("Task due date (YYYY-MM-DD): ");
         return input.nextLine();
     }
 
-    private static String getTaskDescription() {
+    private String getTaskDescription() {
         System.out.printf("Task description: ");
         return input.nextLine();
     }
 
-    private static String getTaskTitle() {
+    private String getTaskTitle() {
         System.out.printf("%nTask title(Must be more than 1 character): ");
         return input.nextLine();
     }
 
-    private static int getTaskIndex() {
+    private int getTaskIndex() {
         System.out.printf("%nWhich task will you edit? ");
         return input.nextInt();
     }
 
-    private static int getTaskIndextoRemove() {
+    private int getTaskIndextoRemove() {
         System.out.printf("%nWhich task will you remove? ");
         return input.nextInt();
     }
 
-    private static int getTaskIndextoComplete() {
+    private int getTaskIndextoComplete() {
         System.out.printf("%nWhich task will you mark as completed? ");
         return input.nextInt();
     }
 
-    private static int getTaskIndextoUncomplete() {
+    private int getTaskIndextoUncomplete() {
         System.out.printf("%nWhich task will you unmark as completed? ");
         return input.nextInt();
     }
 
-    private static String getEditTaskDueDate(int index) {
+    private String getEditTaskDueDate(int index) {
         System.out.printf("Enter a new task due date (YYYY-MM-DD) for task " + index + ":");
         return input.nextLine();
     }
 
-    private static String getEditTaskDescription(int index) {
+    private String getEditTaskDescription(int index) {
         System.out.printf("Enter a new description for task " + index + ":");
         return input.nextLine();
     }
 
-    private static String getEditTaskTitle(int index) {
+    private String getEditTaskTitle(int index) {
         System.out.printf("%nEnter a new title for task " + index + ":");
         return input.nextLine();
     }
 
-    private static void printMainMenu(){
+    private void printMainMenu(){
         System.out.printf("%nMain Menu%n");
         System.out.printf("---------%n%n");
         System.out.println("1- Create a new list");
@@ -230,7 +239,7 @@ public class App {
         System.out.print(".: Please select your option: ");
     }
 
-    private static void printListMenu(){
+    private void printListMenu(){
         System.out.printf("%nList Operation Menu%n");
         System.out.printf("--------------------%n%n");
         System.out.println("1- view list");
