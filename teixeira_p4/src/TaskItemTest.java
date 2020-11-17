@@ -15,8 +15,7 @@ public class TaskItemTest {
 
     @Test
     public void creatingTaskItemSucceedsWithValidDueDate(){
-        TaskItem t = new TaskItem("test","test description","2020-11-12");
-        assertEquals("2020-11-12", t.getDue_date());
+         assertDoesNotThrow(() -> new TaskItem("test","test description","2020-11-12"));
     }
 
     @Test
@@ -28,8 +27,7 @@ public class TaskItemTest {
 
     @Test
     public void creatingTaskItemSucceedsWithValidTitle(){
-        TaskItem t = new TaskItem("test","test description","2020-11-12");
-        assertEquals("test", t.getTitle());
+        assertDoesNotThrow(() -> new TaskItem("test","test description","2020-11-12"));
   }
 
     @Test
