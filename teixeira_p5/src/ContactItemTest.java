@@ -36,7 +36,7 @@ public class ContactItemTest {
     @Test
     public void editingFailsWithAllBlankValues(){
         ContactItem c = new ContactItem("first","","", "");
-        assertThrows(IllegalArgumentException.class, () -> c.setFirstName(""));
+        assertThrows(IllegalArgumentException.class, () -> c.Edit("", "", "", ""));
         ContactList cc = new ContactList();
         cc.addListItem(c);
         assertThrows(IllegalArgumentException.class, () -> cc.editItem("","",
@@ -46,33 +46,50 @@ public class ContactItemTest {
     @Test
     public void editingSucceedsWithBlankEmail() {
         ContactItem c = new ContactItem("first","last","4073215478", "test@test.com");
-        assertDoesNotThrow(() -> c.setEmail(""));
+        assertDoesNotThrow(() -> c.Edit("first","last","4073215478", ""));
     }
 
     @Test
     public void editingSucceedsWithBlankFirstName() {
         ContactItem c = new ContactItem("first","last","4073215478", "test@test.com");
-        assertDoesNotThrow(() -> c.setFirstName(""));
+        assertDoesNotThrow(() -> c.Edit("","last","4073215478", "test@test.com"));
     }
 
     @Test
     public void editingSucceedsWithBlankLastName() {
         ContactItem c = new ContactItem("first","last","4073215478", "test@test.com");
-        assertDoesNotThrow(() -> c.setLastName(""));
+        assertDoesNotThrow(() -> c.Edit("first","","4073215478", "test@test.com"));
     }
 
     @Test
     public void editingSucceedsWithBlankPhone() {
         ContactItem c = new ContactItem("first","last","4073215478", "test@test.com");
-        assertDoesNotThrow(() -> c.setPhoneNumber(""));
+        assertDoesNotThrow(() -> c.Edit("first","last","", "test@test.com"));
     }
 
     @Test
     public void editingSucceedsWithNonBlankValues() {
         ContactItem item = new ContactItem("first","last","4073215478", "test@test.com");
         ContactList c = new ContactList();
+        assertDoesNotThrow(() -> item.Edit("John","Doe","407-123-1245", "email@email.com"));
         c.addListItem(item);
         assertDoesNotThrow(() -> c.editItem("Changed","Changed","321-123-1452", "changed@newmail.com",0));
+    }
+
+    @Test
+    public void editingSucceedsWithOnlyPhone() {
+        ContactItem item = new ContactItem("first","last","4073215478", "test@test.com");
+        ContactList c = new ContactList();
+        c.addListItem(item);
+        assertDoesNotThrow(() -> c.editItem("","","321-123-1452", "",0));
+    }
+
+    @Test
+    public void editingSucceedsWithOnlyEmail() {
+        ContactItem item = new ContactItem("first","last","4073215478", "test@test.com");
+        ContactList c = new ContactList();
+        c.addListItem(item);
+        assertDoesNotThrow(() -> c.editItem("","","", "changed@newmail.com",0));
     }
 
     @Test

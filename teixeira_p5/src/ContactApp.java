@@ -51,7 +51,7 @@ public class ContactApp {
                 } else if (opt == 3) {
                     input.nextLine();
                     c_List.viewList();
-                    getEditTaskItem();
+                    getEditContactItem();
                 } else if (opt == 4) {
                     input.nextLine();
                     c_List.viewList();
@@ -84,7 +84,7 @@ public class ContactApp {
     private void removeContactItem() {
         try {
             if(c_List.ListIsEmpty()) {
-                System.out.printf("%nTask list is empty, nothing to remove!");
+                System.out.printf("%nContact list is empty, nothing to remove!");
             }else {
                 int index = getIndextoRemove();
                 c_List.removeItem(index);
@@ -97,7 +97,7 @@ public class ContactApp {
 
     }
 
-    private void getEditTaskItem() {
+    private void getEditContactItem() {
         try {
             int index = getContactIndex();
             c_List.isIndexValid(index);
@@ -108,7 +108,7 @@ public class ContactApp {
             String email = getEditEmail(index);
             c_List.editItem(first_name,last_name,phone_number,email,index);
         } catch (IllegalArgumentException ex) {
-            System.out.println("A contact needs ate least one value entered!");
+            System.out.println("Invalid entry, please try again!!!");
 
         } catch (IndexOutOfBoundsException | InputMismatchException ex) {
             System.out.println("Warning: Please select a valid contact to edit");
@@ -133,7 +133,7 @@ public class ContactApp {
             }catch (ContactItem.InvalidPhoneException ex){
                 System.out.println("Invalid Phone number! Please try again");
             }catch (IllegalArgumentException ex) {
-                System.out.println("A contact needs ate least one value entered!");
+                System.out.println("A contact needs ate least one value entered !!");
             }
         }
 
@@ -170,12 +170,12 @@ public class ContactApp {
     }
 
     private int getContactIndex() {
-        System.out.printf("%nWhich task will you edit? ");
+        System.out.printf("%nWhich contact will you edit? ");
         return input.nextInt();
     }
 
     private int getIndextoRemove() {
-        System.out.printf("%nWhich task will you remove? ");
+        System.out.printf("%nWhich contact will you remove? ");
         return input.nextInt();
     }
 
@@ -186,7 +186,7 @@ public class ContactApp {
     }
 
     private String getEditPhone(int index) {
-        System.out.printf("Enter a new phone number (xxx-xxx-xxxx) for contact " + index + ":");
+        System.out.printf("Enter a new phone number (xxx-xxx-xxxx or xxxxxxxxxx) for contact " + index + ":");
         return input.nextLine();
     }
 

@@ -60,7 +60,7 @@ class ContactListTest {
         ContactItem item = new ContactItem("first","last","4071234567","test@email.com");
         ContactList  t = new ContactList();
         t.addListItem(item);
-        assertThrows(IndexOutOfBoundsException.class, () -> t.editItem("", "","","",10));
+        assertThrows(IndexOutOfBoundsException.class, () -> t.editItem("John", "Doe","","",10));
     }
 
     @Test
@@ -87,6 +87,38 @@ class ContactListTest {
         assertDoesNotThrow(() -> t.editItem("John", "Doe","","john@gmail.com",0));
     }
 
+    @Test
+    public void editingSucceedsWithOnlyPhone(){
+        ContactItem item = new ContactItem("first","last","4071234567","test@email.com");
+        ContactList  t = new ContactList();
+        t.addListItem(item);
+        assertDoesNotThrow(() -> t.editItem("", "","321-321-3212","",0));
+    }
+
+    @Test
+    public void editingSucceedsWithOnlyEmail(){
+        ContactItem item = new ContactItem("first","last","4071234567","test@email.com");
+        ContactList  t = new ContactList();
+        t.addListItem(item);
+        assertDoesNotThrow(() -> t.editItem("", "","","john@gmail.com",0));
+    }
+
+    @Test
+    public void editingSucceedsWithOnlyFirstName(){
+        ContactItem item = new ContactItem("first","last","4071234567","test@email.com");
+        ContactList  t = new ContactList();
+        t.addListItem(item);
+        assertDoesNotThrow(() -> t.editItem("John", "","","",0));
+    }
+
+    @Test
+    public void editingSucceedsWithOnlyLastName(){
+        ContactItem item = new ContactItem("first","last","4071234567","test@email.com");
+        ContactList  t = new ContactList();
+        t.addListItem(item);
+        assertDoesNotThrow(() -> t.editItem("", "Doe","","",0));
+    }
+    
     @Test
     public void newListIsEmpty(){
         ContactList t = new ContactList();

@@ -26,11 +26,8 @@ public class ContactList extends ItemList {
 
     public void editItem(String first_name, String last_name, String phone_number, String email, int index) {
         try {
-            this.getItem(index).setFirstName(first_name);
-            this.getItem(index).setLastName(last_name);
-            this.getItem(index).setPhoneNumber(phone_number);
-            this.getItem(index).setEmail(email);
-        }catch (IndexOutOfBoundsException ex) {
+            this.getItem(index).Edit(first_name, last_name, phone_number,email);
+         }catch (IndexOutOfBoundsException ex) {
             throw new IndexOutOfBoundsException("Please select a valid contact to edit");
         }catch (InputMismatchException ex) {
             throw new InputMismatchException("Please select a valid contact to edit!");

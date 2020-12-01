@@ -14,7 +14,7 @@ public class ContactItem extends Item{
                 this.phone_number = phone_number;
             }
             else {
-                throw new InvalidPhoneException("Invalid phone number, please enter a valid phone number! Ex: (xxx-xxx-xxxx)");
+                throw new InvalidPhoneException("Invalid phone number, please enter a valid phone number! Ex: (xxx-xxx-xxxx or xxxxxxxxxx)");
             }
             if(isEmailValid(email)){
                 this.email = email;
@@ -27,6 +27,29 @@ public class ContactItem extends Item{
         }else{
                 throw new IllegalArgumentException("A contact must have at least one value!");
             }
+    }
+
+    public void Edit(String first_name, String last_name, String phone_number, String email) {
+        if (first_name.length() > 0 || last_name.length() > 0 || email.length() > 0 || phone_number.length() > 0) {
+            this.first_name = first_name;
+            this.last_name = last_name;
+            if(isPhoneValid(phone_number)){
+                this.phone_number = phone_number;
+            }
+            else {
+                throw new InvalidPhoneException("Invalid phone number, please enter a valid phone number! Ex: (xxx-xxx-xxxx or xxxxxxxxxx)");
+            }
+            if(isEmailValid(email)){
+                this.email = email;
+            }
+            else
+            {
+                throw new InputMismatchException("Invalid email, please enter a valid email! Ex: teste@test.com");
+            }
+
+        }else{
+            throw new IllegalArgumentException("A contact must have at least one value!");
+        }
     }
 
     public boolean isEmailValid(String email) {
@@ -44,35 +67,19 @@ public class ContactItem extends Item{
     }
 
     public void setFirstName(String first_name) {
-        if (first_name.length() > 0 || last_name.length() > 0 || email.length() > 0 || phone_number.length() > 0){
             this.first_name=first_name;
-        }else{
-            throw new IllegalArgumentException("A contact must have at least one value!");
-        }
     }
 
     public void setLastName(String last_name) {
-        if (first_name.length() > 0 || last_name.length() > 0 || email.length() > 0 || phone_number.length() > 0){
             this.last_name=last_name;
-        }else{
-            throw new IllegalArgumentException("A contact must have at least one value!");
-        }
     }
 
     public void setPhoneNumber(String phone_number) {
-        if (first_name.length() > 0 || last_name.length() > 0 || email.length() > 0 || phone_number.length() > 0){
             this.phone_number=phone_number;
-        }else{
-            throw new IllegalArgumentException("A contact must have at least one value!");
-        }
     }
 
     public void setEmail(String email) {
-        if (first_name.length() > 0 || last_name.length() > 0 || email.length() > 0 || phone_number.length() > 0){
             this.email=email;
-        }else{
-            throw new IllegalArgumentException("A contact must have at least one value!");
-        }
     }
 
     public String getFirst_name() {
