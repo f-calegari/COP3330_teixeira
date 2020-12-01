@@ -150,12 +150,12 @@ public class ContactApp {
     }
 
     private String getContactEmail() {
-        System.out.printf("Email address (x@y.z): ");
+        System.out.printf("Email address (email@email.com): ");
         return input.nextLine();
     }
 
     private String getContactPhone() {
-        System.out.printf("Phone number (xxx-xxx-xxxx): ");
+        System.out.printf("Phone number (xxx-xxx-xxxx or xxxxxxxxxx): ");
         return input.nextLine();
     }
 
