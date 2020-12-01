@@ -181,7 +181,7 @@ public class ContactApp {
 
 
     private String getEditEmail(int index) {
-        System.out.printf("Enter a new email address (x@y.z) for contact " + index + ":");
+        System.out.printf("Enter a new email address (email@email.com) for contact " + index + ":");
         return input.nextLine();
     }
 
