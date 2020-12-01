@@ -93,7 +93,7 @@ public class ContactItem extends Item{
 
     @Override
     public String toString() {
-        return  "Name: " + first_name + " " + last_name + "\n" + "Phone: " + phone_number + "\n"
+        return  "Name: " + first_name + " " + last_name + "%n" + "Phone: " + phone_number + "%n"
                 + "Email: " + email;
     }
 

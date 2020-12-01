@@ -97,6 +97,6 @@ class ContactListTest {
     public void savedTaskListCanBeLoaded(){
         ContactList c = new ContactList();
         String filename = "clist.txt"; // must have valid clist.txt list file to test
-        //assertDoesNotThrow(() -> c.readList(filename));
+        assertDoesNotThrow(() -> c.readList(filename));
     }
 }

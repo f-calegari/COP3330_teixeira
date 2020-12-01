@@ -5,9 +5,7 @@ public class ContactItemTest {
 
     @Test
     public void creationFailsWithAllBlankValues() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new ContactItem("", "", "", "");
-        });
+        assertThrows(IllegalArgumentException.class, () -> new ContactItem("", "", "", ""));
     }
 
     @Test
@@ -39,6 +37,10 @@ public class ContactItemTest {
     public void editingFailsWithAllBlankValues(){
         ContactItem c = new ContactItem("first","","", "");
         assertThrows(IllegalArgumentException.class, () -> c.setFirstName(""));
+        ContactList cc = new ContactList();
+        cc.addListItem(c);
+        assertThrows(IllegalArgumentException.class, () -> cc.editItem("","",
+                "", "",0));
     }
 
     @Test
@@ -67,18 +69,17 @@ public class ContactItemTest {
 
     @Test
     public void editingSucceedsWithNonBlankValues() {
-        ContactItem c = new ContactItem("first","last","4073215478", "test@test.com");
-        assertDoesNotThrow(() -> c.setFirstName("test first"));
-        assertDoesNotThrow(() -> c.setLastName("test last"));
-        assertDoesNotThrow(() -> c.setPhoneNumber("1234567890"));
-        assertDoesNotThrow(() -> c.setEmail("email@email.com"));
+        ContactItem item = new ContactItem("first","last","4073215478", "test@test.com");
+        ContactList c = new ContactList();
+        c.addListItem(item);
+        assertDoesNotThrow(() -> c.editItem("Changed","Changed","321-123-1452", "changed@newmail.com",0));
     }
 
     @Test
     public void testToString(){
         ContactItem c = new ContactItem("first","last","4073215478", "test@test.com");
-        assertEquals("Name: first last\n" +
-                "Phone: 4073215478\n" +
+        assertEquals("Name: first last%n" +
+                "Phone: 4073215478%n" +
                 "Email: test@test.com", c.toString());
     }
 
